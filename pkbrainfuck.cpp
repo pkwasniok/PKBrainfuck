@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
     }
 
     // Creating bf source file buffer
-    char file_buff[200] = {0};
-    char bf_buff[200] = {0};
+    char file_buff[3000] = {0};
+    char bf_buff[100] = {0};
     char *bf_pointer = &bf_buff[0];
 
     // Open bf source file
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
             buff_counter++;
             if (buff_counter >= sizeof(file_buff))
             {
-                fprintf(stdout, "Error occured: file buffor overflow!");
+                fprintf(stdout, "Error occured: file buffer overflow!");
                 return 1;
             }
         } while (char_buff != EOF);
