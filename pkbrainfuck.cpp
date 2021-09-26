@@ -65,39 +65,64 @@ int main(int argc, char *argv[])
 
     for (int i = 0; i < sizeof(file_buff); i++)
     {
-        char char_buff = file_buff[i];
-
         // Increment pointer
-        if (char_buff == '>')
+        if (file_buff[i] == '>')
         {
             bf_pointer += 1;
         }
         // Decrement pointer
-        else if (char_buff == '<')
+        else if (file_buff[i] == '<')
         {
             bf_pointer -= 1;
         }
-        else if (char_buff == '+')
+        else if (file_buff[i] == '+')
         {
             *bf_pointer += 1;
         }
-        else if (char_buff == '-')
+        else if (file_buff[i] == '-')
         {
             *bf_pointer -= 1;
         }
-        else if (char_buff == '.')
+        else if (file_buff[i] == '.')
         {
             printf("%c", *bf_pointer);
         }
-        // End of program
-        else if (char_buff == 0)
+        else if (file_buff[i] == ',')
         {
+            *bf_pointer = getchar();
+        }
+        else if (file_buff[i] == '[')
+        {
+            if ((*bf_pointer) == 0)
+            {
+                int iteration_level = 0;
+
+                do
+                {
+                    i++;
+                } while (file_buff[i] != ']');
+            }
+        }
+        else if (file_buff[i] == ']')
+        {
+            int iteration_level = 0;
+
+            do
+            {
+                i--;
+            } while (file_buff[i] != '[');
+            i--;
+        }
+        // End of program
+        else if (file_buff[i] == 0)
+        {
+            printf("\n");
             return 0;
         }
         // Error in src file
         else
         {
-            fprintf(stderr, "Error occured: error in source file! | %d | %d \n", i, (int)char_buff);
+            fprintf(stderr, "Error occured: error in source file! | %d | %d \n", i, (int)file_buff[i]);
         }
     }
 
