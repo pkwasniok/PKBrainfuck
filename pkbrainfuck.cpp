@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
 
     // Creating bf source file buffer
     char file_buff[3000] = {0};
-    char bf_buff[100] = {0};
-    char *bf_pointer = &bf_buff[0];
+    char bf_buff[30000] = {0};
+    char *bf_pointer = bf_buff;
 
     // Open bf source file
     sourceFile = fopen(argv[1], "r");
@@ -90,6 +90,8 @@ int main(int argc, char *argv[])
         else if (file_buff[i] == ',')
         {
             *bf_pointer = getchar();
+            while (getchar() != '\n')
+                ;
         }
         else if (file_buff[i] == '[')
         {
